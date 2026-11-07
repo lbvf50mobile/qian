@@ -73,7 +73,14 @@ def get_four_num
 
 end
 
-10.times {
-  p get_four_num
+1000.times { |x|
+   num, han, pin = get_four_num
+   puts "#{x+1}. #{han}"
+   puts pin
+   out = gets
+   break if out.nil?
+   puts num
+   out = gets
+   break if out.nil?
 }
 
