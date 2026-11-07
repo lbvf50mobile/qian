@@ -31,7 +31,7 @@ Hash_pinyin = {
 }
 
 def make_hanzi(th, hn, dec, ones)
-  hanzi = Array.new(6)
+  hanzi = Array.new(7)
   hanzi[0] = Hash_hanzi[th]
   hanzi[1] = Hash_hanzi[1000]
   hanzi[2] = Hash_hanzi[hn]
@@ -43,7 +43,7 @@ def make_hanzi(th, hn, dec, ones)
   return hanzi
 end
 def make_pinyin(th, hn, dec, ones)
-  pinyin = Array.new(6)
+  pinyin = Array.new(7)
   pinyin[0] = Hash_pinyin[th]
   pinyin[1] = Hash_pinyin[1000]
   part_th = pinyin[0]+pinyin[1]
