@@ -199,7 +199,7 @@ end
 #################################################
 def get_four_num
   # 1 full 1352
-  # 2 twogaps 1001
+  # 2 twogaps 2002
   # 3 baigap 1031
   # 4 shigap 1401
   type = rand(1..4) 

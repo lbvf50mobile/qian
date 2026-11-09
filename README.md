@@ -1,4 +1,4 @@
-# Tool for learning Mandaring numbers
+# Tool for learning Mandarin numbers
 
 - 0 零 (líng) 
 - 1 一 (yī)
