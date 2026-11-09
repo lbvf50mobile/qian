@@ -32,7 +32,8 @@ Hash_pinyin = {
  1000 => "qiān",
 }
 
-def make_hanzi(th, hn, dec, ones)
+# Full Hanzi
+def full_h(th, hn, dec, ones)
   hanzi = Array.new(7)
   hanzi[0] = Hash_hanzi[th]
   hanzi[1] = Hash_hanzi[1000]
@@ -44,7 +45,9 @@ def make_hanzi(th, hn, dec, ones)
   hanzi = hanzi.join('')
   return hanzi
 end
-def make_pinyin(th, hn, dec, ones)
+
+# Full PinYin
+def full_p(th, hn, dec, ones)
   pinyin = Array.new(7)
   pinyin[0] = Hash_pinyin[th]
   pinyin[1] = Hash_pinyin[1000]
@@ -62,17 +65,24 @@ def make_pinyin(th, hn, dec, ones)
   return part_th+" "+part_hn+" "+part_dc+" "+pinyin[6]
 end
 
-def get_four_num
+def get_full
   thousands = rand(1..9)
   hundreds = rand(1..9)
   decs = rand(1..9)
   ones = rand(1..9)
-  hanzi = make_hanzi(thousands, hundreds, decs, ones)
-  pinyin = make_pinyin(thousands, hundreds, decs, ones)
+  hanzi = full_h(thousands, hundreds, decs, ones)
+  pinyin = full_p(thousands, hundreds, decs, ones)
   number = thousands*1000+hundreds*100+decs*10+ones
-
   return [number, hanzi, pinyin]
-
+end
+def get_four_num
+  # 1 full 1352
+  type = 1
+  if 1 == type
+    return get_full
+  else
+    return get_full
+  end
 end
 
 puts "Usage: -t for text output."
