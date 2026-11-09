@@ -2,6 +2,7 @@
 
 
 Hash_hanzi = {
+ 0 => "零", #(líng) 
  1 => "一", #(yī) 
  2 => "二", #(èr)
  3 => "三", #(sān)
@@ -16,6 +17,7 @@ Hash_hanzi = {
  1000 => "千", #(qiān)
 }
 Hash_pinyin = {
+ 0 => "líng", 
  1 => "yī", 
  2 => "èr",
  3 => "sān",
@@ -73,14 +75,25 @@ def get_four_num
 
 end
 
-1000.times { |x|
-   num, han, pin = get_four_num
-   puts "#{x+1}. #{han}"
-   out = gets
-   break if out.nil?
-   puts pin
-   puts num
-   out = gets
-   break if out.nil?
-}
+puts "Usage: -t for text output."
 
+if ARGV.empty?
+  1000.times { |x|
+     num, han, pin = get_four_num
+     puts "#{x+1}. #{han}"
+     out = gets
+     break if out.nil?
+     puts pin
+     puts num
+     out = gets
+     break if out.nil?
+  }
+elsif "-t" == ARGV[0]
+  # command T !./% -t
+  3.times { |x|
+     num, han, pin = get_four_num
+     puts "#{x+1}. #{han}"
+     puts pin
+     puts num
+  }
+end
