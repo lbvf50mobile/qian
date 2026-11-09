@@ -1,5 +1,6 @@
 # Tool for learning Mandaring numbers
 
+- 0 零 (líng) 
 - 1 一 (yī)
 - 2 二 (èr)
 - 3 三 (sān)
@@ -13,4 +14,10 @@
 - 100 百 (bǎi)
 - 1000 千 (qiān)
 
-Exit by **Ctrl+D**.
+- Exit by **Ctrl+D**.
+- Testing output `./qian.rb -t`.
+
+## Numbers types
+
+- **full** 3143 三千一百四十三 sānqiān yībǎi sìshí sān  
+- **twogap** 7005 七千零五 qīqiān líng  wǔ 

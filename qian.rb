@@ -32,6 +32,7 @@ Hash_pinyin = {
  1000 => "qiān",
 }
 
+#################################################
 # Full Hanzi
 def full_h(th, hn, dec, ones)
   hanzi = Array.new(7)
@@ -45,7 +46,6 @@ def full_h(th, hn, dec, ones)
   hanzi = hanzi.join('')
   return hanzi
 end
-
 # Full PinYin
 def full_p(th, hn, dec, ones)
   pinyin = Array.new(7)
@@ -64,7 +64,6 @@ def full_p(th, hn, dec, ones)
   pinyin[6] = Hash_pinyin[ones]
   return part_th+" "+part_hn+" "+part_dc+" "+pinyin[6]
 end
-
 def get_full
   thousands = rand(1..9)
   hundreds = rand(1..9)
@@ -75,11 +74,52 @@ def get_full
   number = thousands*1000+hundreds*100+decs*10+ones
   return [number, hanzi, pinyin]
 end
+#################################################
+#################################################
+# Twogap Hanzi
+def twogap_h(th, hn, dec, ones)
+  hanzi = Array.new(7)
+  hanzi[0] = Hash_hanzi[th]
+  hanzi[1] = Hash_hanzi[1000]
+  hanzi[2] = "" 
+  hanzi[3] = Hash_hanzi[0]
+  hanzi[4] = ""
+  hanzi[5] = "" 
+  hanzi[6] = Hash_hanzi[ones]
+  hanzi = hanzi.join('')
+  return hanzi
+end
+# Twogap PinYin
+def twogap_p(th, hn, dec, ones)
+  pinyin = Array.new
+  pinyin[0] = Hash_pinyin[th]
+  pinyin[1] = Hash_pinyin[1000]
+  part_th = pinyin[0]+pinyin[1]
+  part_hn = Hash_pinyin[0]
+  part_dc = "" 
+  pinyin[3] = Hash_pinyin[ones]
+  return part_th+" "+part_hn+" "+part_dc+" "+pinyin[3]
+end
+def get_twogap
+  thousands = rand(1..9)
+  hundreds = 0
+  decs = 0
+  ones = rand(1..9)
+  hanzi = twogap_h(thousands, hundreds, decs, ones)
+  pinyin = twogap_p(thousands, hundreds, decs, ones)
+  number = thousands*1000+hundreds*100+decs*10+ones
+  return [number, hanzi, pinyin]
+end
+#################################################
+
 def get_four_num
   # 1 full 1352
-  type = 1
+  # 2 twogaps 1001
+  type = 2
   if 1 == type
     return get_full
+  elsif 2 == type
+    return get_twogap
   else
     return get_full
   end
