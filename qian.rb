@@ -202,13 +202,15 @@ def get_four_num
   # 2 twogaps 1001
   # 3 baigap 1031
   # 4 shigap 1401
-  type = 3
+  type = 4
   if 1 == type
     return get_full
   elsif 2 == type
     return get_twogap
   elsif 3 == type
     return get_baigap
+  elsif 4 == type
+    return get_shigap
   else
     return get_full
   end
