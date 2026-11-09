@@ -21,3 +21,4 @@
 
 - **full** 3143 三千一百四十三 sānqiān yībǎi sìshí sān  
 - **twogap** 7005 七千零五 qīqiān líng  wǔ 
+- **baigap** 2043 二千零四十三 èrqiān líng sìshí sān 
