@@ -202,7 +202,7 @@ def get_four_num
   # 2 twogaps 1001
   # 3 baigap 1031
   # 4 shigap 1401
-  type = 4
+  type = rand(1..4) 
   if 1 == type
     return get_full
   elsif 2 == type
@@ -231,7 +231,7 @@ if ARGV.empty?
   }
 elsif "-t" == ARGV[0]
   # command T !./% -t
-  3.times { |x|
+  10.times { |x|
      num, han, pin = get_four_num
      puts "#{x+1}. #{han}"
      puts pin
