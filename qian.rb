@@ -264,6 +264,11 @@ def decode_num(category, digit_array)
   end
   return [num, han, pin]
 end
+def prepare_dir_sounds_arr()
+  data = get_sound_names
+  data = data.map{|x| decode_num(*x[-2..-1])+[x[0]]}
+  return data
+end
 
 def log(str)
   file_name = File.dirname(File.expand_path(__FILE__)) + "/log.txt"
@@ -288,15 +293,19 @@ if ARGV.empty?
   timestamp = Time.now.strftime("%Y-%m-%d %a %H:%M")
   log("# " + timestamp)
   1000.times { |x|
-    break if !generate(x)
+    type = rand(1..2)
+    if 1 == type 
+      break if !generate(x)
+    elsif 2 == type
+      break if !generate(x)
+    end
   }
 elsif "-t" == ARGV[0]
   # command T !./% -t
   # mpv 1003.mp3 > /dev/null 2>&1
-  data = get_sound_names
+  data = prepare_dir_sounds_arr()
   data.each do |x|
     p x
-    p decode_num(*x[-2..-1])
   end
 
   1.times { |x|
