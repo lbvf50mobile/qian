@@ -215,6 +215,32 @@ def get_four_num
     return get_full
   end
 end
+# Get categorized list of sound files from 'sound' directory
+# relative to the script location.
+# Returns array of [filepath, category] pairs.
+# Categories:
+#   'full'     - no zeros (e.g., 1234)
+#   'twogaps'  - two consecutive zeros (e.g., 1002)
+#   'baigap'   - zero in hundreds place (e.g., 1023)
+#   'shigap'   - zero in tens place (e.g., 1203)
+def get_sound_names
+  sound_dir = File.join(File.dirname(File.expand_path(__FILE__)), 'sound')
+  return [] unless Dir.exist?(sound_dir)
+
+  Dir.glob(File.join(sound_dir, '*.mp3'))
+    .select { |f| File.basename(f) =~ /^\d{4}\.mp3$/ }
+    .map do |f|
+      digits = File.basename(f, '.mp3')
+      category = case digits
+                 when /^[^0]{4}$/       then 'full'
+                 when /^[^0]0{2}[^0]$/  then 'twogaps'
+                 when /^[^0]0[^0]{2}$/  then 'baigap'
+                 when /^[^0]{2}0[^0]$/  then 'shigap'
+                 else 'other'
+                 end
+      [f, category]
+    end
+end
 
 def log(str)
   file_name = File.dirname(File.expand_path(__FILE__)) + "/log.txt"
