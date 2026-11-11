@@ -217,7 +217,7 @@ def get_four_num
 end
 # Get categorized list of sound files from 'sound' directory
 # relative to the script location.
-# Returns array of [filepath, category] pairs.
+# Returns array of [filepath, category, [thousands, hundreds, tens, ones]] triples.
 # Categories:
 #   'full'     - no zeros (e.g., 1234)
 #   'twogaps'  - two consecutive zeros (e.g., 1002)
@@ -238,8 +238,31 @@ def get_sound_names
                  when /^[^0]{2}0[^0]$/  then 'shigap'
                  else 'other'
                  end
-      [f, category]
+      # Split digits into array of integers [thousands, hundreds, tens, ones]
+      digit_array = digits.chars.map(&:to_i)
+      [f, category, digit_array]
     end
+end
+
+def decode_num(category, digit_array)
+  num = digit_array.join("").to_i
+  han, pin = "", ""
+  if "full" == category
+    han = full_h(*digit_array)
+    pin = full_p(*digit_array)
+  elsif "twogaps" == category
+    han = twogap_h(*digit_array)
+    pin = twogap_p(*digit_array)
+  elsif "baigap" == category
+    han = baigap_h(*digit_array)
+    pin = baigap_p(*digit_array)
+  elsif "shigap" == category
+    han = shigap_h(*digit_array)
+    pin = shigap_p(*digit_array)
+  else
+    raise "Unknown category #{category}."
+  end
+  return [num, han, pin]
 end
 
 def log(str)
@@ -270,7 +293,13 @@ if ARGV.empty?
 elsif "-t" == ARGV[0]
   # command T !./% -t
   # mpv 1003.mp3 > /dev/null 2>&1
-  10.times { |x|
+  data = get_sound_names
+  data.each do |x|
+    p x
+    p decode_num(*x[-2..-1])
+  end
+
+  1.times { |x|
      num, han, pin = get_four_num
      puts "#{x+1}. #{han}"
      puts pin
