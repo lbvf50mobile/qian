@@ -216,7 +216,10 @@ def get_four_num
   end
 end
 
-
+def log(str)
+  file_name = File.dirname(File.expand_path(__FILE__)) + "/log.txt"
+  File.write(file_name, str+"\n", mode: "a")
+end
 def generate(x)
      num, han, pin = get_four_num
      puts "#{x+1}. #{han}"
@@ -224,6 +227,7 @@ def generate(x)
      return false if out.nil?
      puts pin
      puts num
+     log("#{x+1}. #{han} #{pin} #{num}")
      out = gets
      return false if out.nil?
      return true
@@ -232,11 +236,14 @@ end
 
 if ARGV.empty?
   puts "Usage: -h for help."
+  timestamp = Time.now.strftime("%Y-%m-%d %a %H:%M")
+  log("# " + timestamp)
   1000.times { |x|
     break if !generate(x)
   }
 elsif "-t" == ARGV[0]
   # command T !./% -t
+  # mpv 1003.mp3 > /dev/null 2>&1
   10.times { |x|
      num, han, pin = get_four_num
      puts "#{x+1}. #{han}"
