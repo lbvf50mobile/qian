@@ -286,6 +286,23 @@ def generate(x)
      return false if out.nil?
      return true
 end
+def from_sound(x, arr)
+     num, han, pin, file = arr 
+     while true do
+       puts "#{x+1}. #{han} (r for replay)"
+      spawn("mpv #{file}", out: File::NULL, err: File::NULL)
+       out = gets
+       return false if out.nil?
+       next if /r/ === out 
+       break
+     end
+     puts pin
+     puts num
+     log("#{x+1}. #{han} #{pin} #{num}")
+     out = gets
+     return false if out.nil?
+     return true
+end
 
 
 if ARGV.empty?
@@ -294,10 +311,11 @@ if ARGV.empty?
   log("# " + timestamp)
   1000.times { |x|
     type = rand(1..2)
+    sounds = prepare_dir_sounds_arr()
     if 1 == type 
       break if !generate(x)
     elsif 2 == type
-      break if !generate(x)
+      break if !from_sound(x,sounds.sample)
     end
   }
 elsif "-t" == ARGV[0]
