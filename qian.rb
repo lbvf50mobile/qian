@@ -216,18 +216,24 @@ def get_four_num
   end
 end
 
-puts "Usage: -t for text output."
 
-if ARGV.empty?
-  1000.times { |x|
+def generate(x)
      num, han, pin = get_four_num
      puts "#{x+1}. #{han}"
      out = gets
-     break if out.nil?
+     return false if out.nil?
      puts pin
      puts num
      out = gets
-     break if out.nil?
+     return false if out.nil?
+     return true
+end
+
+
+if ARGV.empty?
+  puts "Usage: -h for help."
+  1000.times { |x|
+    break if !generate(x)
   }
 elsif "-t" == ARGV[0]
   # command T !./% -t
@@ -237,4 +243,8 @@ elsif "-t" == ARGV[0]
      puts pin
      puts num
   }
+elsif "-h" == ARGV[0]
+  puts "Keys for qian:"
+  puts "Usage: -h for help."
+  puts "Usage: -t for text output."
 end
