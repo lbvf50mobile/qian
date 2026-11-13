@@ -16,8 +16,8 @@ STDERR.puts "Usage: ./qinlogfliter.rb dir log_file > filterlog.txt"
 raise "Must be two arguemtns." if ! 2 == ARGV.size
 raise "#{ARGV[0]} must be a dir." if ! Dir.exist?(ARGV[0]) 
 raise "#{ARGV[1]} must ba a lot txt file." if ! File.exist?(ARGV[1])
-STDERR.puts sound_dir = ARGV[0]
-STDERR.puts log_file = ARGV[1]
+sound_dir = ARGV[0]
+log_file = ARGV[1]
 
 #2) Generate list of existed files.
 existed_sounds = {}
@@ -30,7 +30,15 @@ existed_sounds = {}
      end
    }
 
- STDERR.puts existed_sounds
 
+#3) Read strins from the log file.
+ lines = File.readlines(log_file).select{ |x|  
+   if x =~ /(\d{4})$/
+     existed_sounds[$1].nil?
+   else
+     false
+   end
+ }
 
-
+ puts "# "+Time.now.strftime("%Y-%m-%d %a %H:%M")
+ puts lines.join("")
