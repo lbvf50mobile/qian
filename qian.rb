@@ -370,6 +370,8 @@ elsif "-t" == ARGV[0]
      puts num
   }
 elsif "-h" == ARGV[0]
+  puts "Qian CLI tool for numbers in Hanzi, designed for using with handwriting."
+  puts "Qian writes history into the 'log.txt'."
   puts "Keys for qian:"
   puts "Usage: -h for help."
   puts "Usage: -t for text output."
