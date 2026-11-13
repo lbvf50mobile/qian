@@ -298,7 +298,40 @@ def from_sound(x, arr)
      end
      puts pin
      puts num
-     log("#{x+1}. #{han} #{pin} #{num}")
+     log("sound #{x+1}. #{han} #{pin} #{num}")
+     out = gets
+     return false if out.nil?
+     return true
+end
+def from_sound_num(x, arr)
+     num, han, pin, file = arr 
+     while true do
+       puts "#{x+1}. #{num} (r for replay)"
+      spawn("mpv #{file}", out: File::NULL, err: File::NULL)
+       out = gets
+       return false if out.nil?
+       next if /r/ === out 
+       break
+     end
+     puts "#{han} #{pin}"
+     log("sound_numer #{x+1}. #{han} #{pin} #{num}")
+     out = gets
+     return false if out.nil?
+     return true
+end
+def from_sound_no_hanzi(x, arr)
+     num, han, pin, file = arr 
+     while true do
+       puts "#{x+1}. ~~~~~~~ (r for replay)"
+      spawn("mpv #{file}", out: File::NULL, err: File::NULL)
+       out = gets
+       return false if out.nil?
+       next if /r/ === out 
+       break
+     end
+     puts "#{han} #{pin}"
+     puts num
+     log("sound_nh #{x+1}. #{han} #{pin} #{num}")
      out = gets
      return false if out.nil?
      return true
@@ -310,12 +343,16 @@ if ARGV.empty?
   timestamp = Time.now.strftime("%Y-%m-%d %a %H:%M")
   log("# " + timestamp)
   1000.times { |x|
-    type = rand(1..2)
+    type = rand(1..4)
     sounds = prepare_dir_sounds_arr()
     if 1 == type 
       break if !generate(x)
     elsif 2 == type
       break if !from_sound(x,sounds.sample)
+    elsif 3 == type
+      break if !from_sound_no_hanzi(x,sounds.sample)
+    elsif 4 == type
+      break if !from_sound_num(x,sounds.sample)
     end
   }
 elsif "-t" == ARGV[0]
