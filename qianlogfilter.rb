@@ -13,7 +13,7 @@ STDERR.puts "Usage: ./qianlogfilter.rb dir log_file > filterlog.txt"
 
 
 # 1) Checking artuments.
-raise "Must be two arguemtns." if ! 2 == ARGV.size
+raise "Must be two arguemtns." if ! (2 == ARGV.size)
 raise "#{ARGV[0]} must be a dir." if ! Dir.exist?(ARGV[0]) 
 raise "#{ARGV[1]} must ba a lot txt file." if ! File.exist?(ARGV[1])
 sound_dir = ARGV[0]
