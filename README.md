@@ -11,7 +11,8 @@ tool and the answer are written by hand into the copy book.
   used to manual increase the amount of sound files in the `sound` dir.
 - The tool requires `mpv` - for playing sound files.
 - Testing output `./qian.rb -t`.
-
+- `./qianlogfilter.rb sound log.txt > filterlog.txt; vim filterlog.txt` - get
+  new numbers from log to add as sound files.
 
 ## Test types
 
