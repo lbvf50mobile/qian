@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 STDERR.puts "Task: Find new numers to add."
-STDERR.puts "Usage: ./qinlogfliter.rb dir log_file > filterlog.txt"
+STDERR.puts "Usage: ./qianlogfilter.rb dir log_file > filterlog.txt"
 
 
 # command T !./% sound log.txt > finteredlog.txt
