@@ -342,6 +342,7 @@ if ARGV.empty?
   puts "Usage: -h for help."
   timestamp = Time.now.strftime("%Y-%m-%d %a %H:%M")
   log("# " + timestamp)
+  puts "记 (jì) " + timestamp
   1000.times { |x|
     type = rand(1..4)
     sounds = prepare_dir_sounds_arr()
