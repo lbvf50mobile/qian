@@ -13,6 +13,8 @@ tool and the answer are written by hand into the copy book.
 - Testing output `./qian.rb -t`.
 - `./qianlogfilter.rb sound log.txt > filterlog.txt; vim filterlog.txt` - get
   new numbers from the log to add as sound files.
+- `./crqian.rb 10` a counter that ticks every `10` seconds and say Mandarin
+  number of a count. Used as an auxiliary tool for [Hanzi Drill](https://github.com/lbvf50mobile/hanzidrill).
 
 ## Test types
 
