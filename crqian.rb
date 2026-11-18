@@ -11,7 +11,7 @@
 
 pause = 1
 
-pause = ARGV[0] if !ARGV.empty?
+pause = ARGV[0].to_i if !ARGV.empty?
 
 # Set Counts. As simple as possible.
 
