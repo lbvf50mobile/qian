@@ -24,8 +24,8 @@ a hanzi charackter again and again during writing it. Thus set of `aliases`
 is used.
 
 ```Bash
-export qianprefix=/home/dima/fun/qian/
-export hanziprefix=/home/dima/fun/hanzidrill/
+export qianprefix=/home/lbvf50mobile/qian/
+export hanziprefix=/home/lbvf50mobile/hanzidrill/
 
 alias crqian="${qianprefix}crqian.rb"
 
