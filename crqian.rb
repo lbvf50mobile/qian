@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 # Usage: ./crqian.rb [pause_time]
+# Usage: ./crqian.rb [sound_file pause_time hanzi_char ]
 
 # Counter Qian - it is a simple script to count numbers when I write Hanzi,
 # and write a character some times. It's a part of complex system of learning
@@ -10,8 +11,20 @@
 # Set time period. pause in seconds
 
 pause = 1
+format = 1
+path = ""
+hanzi_repeat = "~"
 
-pause = ARGV[0].to_i if !ARGV.empty?
+if ARGV.empty? || 1 == ARGV.size
+
+  pause = ARGV[0].to_i if !ARGV.empty?
+
+elsif 2 <= ARGV.size 
+  format = 2
+  path = ARGV[0]
+  pause = ARGV[1].to_i
+  hanzi_repeat = ARGV[2]
+end
 
 # Set Counts. As simple as possible.
 
@@ -40,10 +53,26 @@ counts = [
 ]
 
 # Count:
-sound_dir = File.join(File.dirname(File.expand_path(__FILE__)), 'sound')
-counts.each do |han,sound|
-  file = File.join(sound_dir,sound)
-  puts "#{han}"
-  system("mpv #{file}", out: File::NULL, err: File::NULL)
-  sleep(pause)
+ 
+if 1 == format
+  sound_dir = File.join(File.dirname(File.expand_path(__FILE__)), 'sound')
+  counts.each do |han,sound|
+    file = File.join(sound_dir,sound)
+    puts "#{han}"
+    system("mpv #{file}", out: File::NULL, err: File::NULL)
+    sleep(pause)
+  end
+end
+
+if 2 == format
+  sound_dir = File.join(File.dirname(File.expand_path(__FILE__)), 'sound')
+  raise "#{path} does not exts" if ! File.exist?(path)
+  counts.each do |han,sound|
+    file = File.join(sound_dir,sound)
+    puts "#{han} #{hanzi_repeat}"
+    system("mpv #{file}", out: File::NULL, err: File::NULL)
+    sleep(1)
+    system("mpv #{path}", out: File::NULL, err: File::NULL)
+    sleep(pause)
+  end
 end

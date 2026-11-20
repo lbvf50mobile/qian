@@ -16,6 +16,26 @@ tool and the answer are written by hand into the copy book.
 - `./crqian.rb 10` a counter that ticks every `10` seconds and say Mandarin
   number of a count. Used as an auxiliary tool for [Hanzi Drill](https://github.com/lbvf50mobile/hanzidrill).
 
+
+## Integratoin with  [Hanzi Drill](https://github.com/lbvf50mobile/hanzidrill)
+
+The goal is to simplyphy Hanzi memorization. The `crian.rb` is used to repeat
+a hanzi charackter again and again during writing it. Thus set of `aliases`
+is used.
+
+```Bash
+export qianprefix=/home/dima/fun/qian/
+export hanziprefix=/home/dima/fun/hanzidrill/
+
+alias crqian="${qianprefix}crqian.rb"
+
+alias lhanzi="crqian ${hanziprefix}docs/data/两liǎng.mp3 2 两" 
+```
+So learning a new hanzi charater is basicaly like changing the `lhanzi` alias.
+
+```Bash
+alias lhanzi="crqian ${hanziprefix}docs/data/两liǎng.mp3 2 两" 
+```
 ## Test types
 
 There are several test types:
