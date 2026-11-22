@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # Usage: ./crqian.rb [pause_time]
-# Usage: ./crqian.rb [sound_file pause_time hanzi_char ]
+# Usage: ./crqian.rb [sound_file hanzi_char pause_time]
 
 # Counter Qian - it is a simple script to count numbers when I write Hanzi,
 # and write a character some times. It's a part of complex system of learning
@@ -21,9 +21,9 @@ if ARGV.empty? || 1 == ARGV.size
 
 elsif 2 <= ARGV.size 
   format = 2
-  path = ARGV[0]
-  pause = ARGV[1].to_i
-  hanzi_repeat = ARGV[2]
+  path = ARGV[0] # Sound file;
+  hanzi_repeat = ARGV[1] # Hanzi Char;
+  pause = ARGV[2].to_i # Pause in seconds;
 end
 
 # Set Counts. As simple as possible.

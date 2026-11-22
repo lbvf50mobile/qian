@@ -29,13 +29,14 @@ export hanziprefix=/home/lbvf50mobile/hanzidrill/
 
 alias crqian="${qianprefix}crqian.rb"
 
-alias lhanzi="crqian ${hanziprefix}docs/data/两liǎng.mp3 2 两" 
+alias lhanzi="crqian ${hanziprefix}docs/data/两liǎng.mp3 两 3" 
 ```
 So learning a new hanzi charater is basicaly like changing the `lhanzi` alias.
 
 ```Bash
-alias lhanzi="crqian ${hanziprefix}docs/data/两liǎng.mp3 2 两" 
+alias lhanzi="crqian ${hanziprefix}docs/data/两liǎng.mp3 两 3" 
 ```
+
 ## Test types
 
 There are several test types:
